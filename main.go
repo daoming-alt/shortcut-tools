@@ -5,9 +5,12 @@ import (
 	"github.com/kdbrian/shortcut-tool/config"
 	"log"
 	"net/http"
+	"github.com/joho/godotenv"
 )
 
 func main() {
+
+	godotenv.Load(".env.local")
 
 	err := database.Connect()
 	if err != nil {

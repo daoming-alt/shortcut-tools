@@ -4,13 +4,15 @@ import (
 	"github.com/kdbrian/shortcut-tool/internal/models"
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
-	_ "modernc.org/sqlite"
+	"os"
 )
 
 var DB *gorm.DB
 
 func Connect() error {
-	db, err := gorm.Open(sqlite.Open("shortcut.db"), &gorm.Config{})
+
+	dbName := os.Getenv("DB_NAME")
+	db, err := gorm.Open(sqlite.Open(dbName), &gorm.Config{})
 	if err != nil {
 		return err
 	}
